@@ -11,7 +11,7 @@ source:
   sha256: 65deb63b695f4edcfa5d4eb85319c0f48ac43e2fbc796f7b8fd3e52be2261206
 
 build:
-  number: 0
+  number: 2
   noarch: python
   entry_points:
     - xrviz = xrviz.cli:main
