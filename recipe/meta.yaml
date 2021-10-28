@@ -1,43 +1,50 @@
+{% set name = "xrviz" %}
 {% set version = "0.1.4" %}
 
+
 package:
-   name:  xrviz
-   version: {{ version }}
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/x/xrviz/xrviz-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/xrviz-{{ version }}.tar.gz
   sha256: 65deb63b695f4edcfa5d4eb85319c0f48ac43e2fbc796f7b8fd3e52be2261206
 
 build:
-  number: 1
+  number: 0
   noarch: python
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  entry_points:
+    - xrviz = xrviz.cli:main
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
-    - python >=3.6
     - pip
-    - jinja2
+    - python
   run:
-    - python >=3.6
-    - xarray >=0.14.1
-    - cartopy
-    - panel >=0.7.0
+    - datashader
     - holoviews
     - hvplot
     - netcdf4
-    - datashader
-    - metpy
+    - panel >=0.7.0
+    - python
+    - xarray >=0.14.1
 
 test:
   imports:
     - xrviz
+    - xrviz.sample_data
+  commands:
+    - pip check
+    - xrviz --help
+  requires:
+    - pip
 
 about:
-  home: https://github.com/intake/xrviz
-  license: BSD-3-Clause
+  home: https://pypi.org/project/xrviz/
+  summary: Interactive visualisations for xarrays
+  license: BSD-Protection
   license_file: LICENSE
-  summary: "Interactive visualisation interface for Xarrays"
 
 extra:
   recipe-maintainers:
