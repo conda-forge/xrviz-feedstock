@@ -20,14 +20,14 @@ build:
 requirements:
   host:
     - pip
-    - python
+    - python >=3.6
   run:
     - datashader
     - holoviews
     - hvplot
     - netcdf4
     - panel >=0.7.0
-    - python
+    - python >=3.6
     - xarray >=0.14.1
 
 test:
